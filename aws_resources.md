@@ -8,7 +8,6 @@
 ## Lambda Functions
 - Name: file-sharing-upload
 - Name: file-sharing-download
-- Name: file-sharing-cleanup
 - Runtime: Python 3.9
 - Region: ap-south-1
 - Purpose: Handle file uploads, downloads, and cleanup operations
@@ -21,8 +20,3 @@
 - Routes:
   - POST /upload -> file-sharing-upload
   - GET /download/{file_id} -> file-sharing-download
-
-## CloudWatch Event Rule
-- Name: file-sharing-cleanup-schedule
-- Purpose: Triggers the cleanup Lambda function every hour
-- Target: file-sharing-cleanup Lambda function
