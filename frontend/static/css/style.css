@@ -1,0 +1,72 @@
+/* Main Styles for File Sharing System */
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.container {
+    flex: 1;
+}
+
+.footer {
+    margin-top: 3rem;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+/* Upload Form Styles */
+#upload-form {
+    padding: 1rem 0;
+}
+
+#upload-progress {
+    height: 10px;
+}
+
+/* Success Page Styles */
+#share-link {
+    font-size: 0.9rem;
+    background-color: #f8f9fa;
+}
+
+/* Download Page Styles */
+.download-container {
+    padding: 2rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Animation for copy button */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.btn-success {
+    animation: pulse 0.5s;
+}

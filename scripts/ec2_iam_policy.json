@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "execute-api:Invoke",
+      "Resource": [
+        "arn:aws:execute-api:ap-south-1:957331814805:s8yefd1acg/*/POST/upload",
+        "arn:aws:execute-api:ap-south-1:957331814805:s8yefd1acg/*/GET/download/*"
+      ]
+    }
+  ]
+}

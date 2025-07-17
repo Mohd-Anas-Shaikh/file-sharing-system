@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Upload File - File Sharing System{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Upload a File</h4>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Upload a file to generate a shareable link. The file will be available for download for 24 hours.</p>
+                
+                <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data" id="upload-form">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Choose a file</label>
+                        <input type="file" class="form-control" id="file" name="file" required>
+                    </div>
+                    
+                    <div class="progress mb-3 d-none" id="upload-progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="upload-btn">Upload File</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('upload-form');
+        const progressBar = document.querySelector('#upload-progress .progress-bar');
+        const progressContainer = document.getElementById('upload-progress');
+        const uploadBtn = document.getElementById('upload-btn');
+        
+        form.addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('file');
+            if (!fileInput.files.length) {
+                return;
+            }
+            
+            // Check file size (AWS Lambda has payload limits)
+            const fileSize = fileInput.files[0].size;
+            const maxSize = 6 * 1024 * 1024; // 6MB limit for Lambda payload
+            
+            if (fileSize > maxSize) {
+                e.preventDefault();
+                alert('File size exceeds the maximum limit of 6MB. Please choose a smaller file.');
+                return;
+            }
+            
+            // Show progress bar
+            progressContainer.classList.remove('d-none');
+            uploadBtn.disabled = true;
+            uploadBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Uploading...';
+            
+            // Simulate upload progress
+            let progress = 0;
+            const interval = setInterval(function() {
+                progress += Math.random() * 10;
+                if (progress > 90) {
+                    clearInterval(interval);
+                    progress = 90;
+                }
+                progressBar.style.width = progress + '%';
+                progressBar.setAttribute('aria-valuenow', progress);
+            }, 300);
+        });
+    });
+</script>
+{% endblock %}
