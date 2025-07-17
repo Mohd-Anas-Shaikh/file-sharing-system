@@ -16,7 +16,7 @@
 ## API Gateway
 - Name: file-sharing-api
 - ID: s8yefd1acg
-- Endpoint: https://s8yefd1acg.execute-api.ap-south-1.amazonaws.com
+- Endpoint: https://anas-api-gateway
 - Region: ap-south-1
 - Routes:
   - POST /upload -> file-sharing-upload
